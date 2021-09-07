@@ -1,0 +1,10 @@
+.wrapper {
+  cursor: pointer;
+  color: #fff;
+  background-color: var(--primary-color);
+}
+
+.invalid {
+  background-color: var(--grey-color);
+  color: #fff;
+}
