@@ -6,7 +6,7 @@ const HomePage = () => {
   // TODO get Name from storage
   const name = 'Nastya';
 
-  return <div>{name ? <MenuSection /> : <GreetingSection />}</div>;
+  return name ? <MenuSection /> : <GreetingSection />;
 };
 
 export default HomePage;

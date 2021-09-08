@@ -1,0 +1,19 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
+
+.title {
+  text-shadow: 5px -2px 0px var(--secondary-color);
+  font-family: 'NotoSansTC Bold';
+  font-size: 65px;
+  color: var(--dark-color);
+  margin-bottom: 20px;
+}
+
+.button {
+  margin-bottom: 10px;
+}
