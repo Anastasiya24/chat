@@ -16,7 +16,13 @@ const GreetingSection = () => {
         onChange={(e) => setName(e?.target?.value)}
         placeholder="First Name"
       />
-      <Button text="Start" onClick={() => {}} invalid={!name} />
+      <Button
+        text="Start"
+        onClick={() => {
+          // TODO save new name
+        }}
+        invalid={!name}
+      />
     </div>
   );
 };
