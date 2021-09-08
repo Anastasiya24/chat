@@ -10,7 +10,7 @@ const MenuSection = () => {
   return (
     <AccountContainer name={name}>
       <div className={styles.wrapper}>
-        <div className={styles.block}>
+        <div>
           <h1 className={styles.title}>Choose a chat</h1>
           <Button
             text="With myself"

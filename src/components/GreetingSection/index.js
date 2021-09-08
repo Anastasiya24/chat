@@ -8,21 +8,24 @@ const GreetingSection = () => {
   const [name, setName] = useState('');
 
   return (
-    <div>
-      <div className={styles.header}>Nice to meet you</div>
-      <p>How are you?</p>
-      <Input
-        value={name}
-        onChange={(e) => setName(e?.target?.value)}
-        placeholder="First Name"
-      />
-      <Button
-        text="Start"
-        onClick={() => {
-          // TODO save new name
-        }}
-        invalid={!name}
-      />
+    <div className={styles.wrapper}>
+      <div>
+        <h1 className={styles.title}>Nice to meet you</h1>
+        <p className={styles.subtitle}>What is your name?</p>
+        <Input
+          value={name}
+          onChange={(e) => setName(e?.target?.value)}
+          placeholder="First Name"
+        />
+        <Button
+          text="Start"
+          onClick={() => {
+            // TODO save new name
+          }}
+          invalid={!name}
+          className={styles.button}
+        />
+      </div>
     </div>
   );
 };

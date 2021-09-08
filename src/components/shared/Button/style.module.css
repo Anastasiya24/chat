@@ -11,15 +11,20 @@
 
 .wrapper:hover {
   background-color: var(--dark-color);
-  transition: 300ms linear; 
+  transition: 300ms linear;
 }
 
 .wrapper:hover p {
   text-shadow: 3px -2px 0px var(--extra-dark-color);
-  transition: 500ms linear; 
+  transition: 500ms linear;
 }
 
-.invalid {
+.invalid,
+.invalid:hover {
   background-color: var(--grey-color);
   color: var(--white-color);
+}
+
+.invalid:hover p {
+  text-shadow: none;
 }
