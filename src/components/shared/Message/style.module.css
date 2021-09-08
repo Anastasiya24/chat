@@ -1,4 +1,24 @@
 .message {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: var(--light-primary-color);
+  border-radius: 8px;
+}
+
+.sender {
+  margin-right: 10px;
+  color: var(--dark-color);
+  font-family: 'NotoSansTC Bold';
+}
+
+.text {
+  line-height: 20px;
+}
+
+.time {
+  text-align: end;
+  font-size: 14px;
+  color: var(--dark-color);
 }

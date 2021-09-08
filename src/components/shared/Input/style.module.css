@@ -22,7 +22,7 @@ input[type="text"] {
   left: 0;
   width: 0;
   height: 2px;
-  background-color: var(--grey-color);
+  background-color: var(--dark-color);
   transition: 0.3s;
 }
 
@@ -41,7 +41,7 @@ input[type="text"] {
   left: 0;
   width: 2px;
   height: 0;
-  background-color: var(--grey-color);
+  background-color: var(--dark-color);
   transition: 0.4s;
 }
 
