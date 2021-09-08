@@ -6,7 +6,7 @@ import styles from './style.module.css';
 const ProfileSettings = () => {
   const [newName, setNewName] = useState('');
   return (
-    <div>
+    <div className={styles.wrapper}>
       <h1>Change your nickname</h1>
       <Input
         value={newName}
@@ -19,6 +19,7 @@ const ProfileSettings = () => {
           //  TODO: SAVE NEW NAME
         }}
         invalid={!newName}
+        className={styles.button}
       />
     </div>
   );

@@ -1,0 +1,11 @@
+.wrapper h1{
+  margin: 0 0 9px;
+  font-size: 15px;
+}
+
+.button {
+  width: 200px;
+  margin: 15px auto 0;
+  padding: 10px;
+  font-size: 15px;
+}
