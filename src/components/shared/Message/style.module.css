@@ -21,4 +21,11 @@
   text-align: end;
   font-size: 14px;
   color: var(--dark-color);
+  margin-top: 5px;
+}
+
+@media (max-width: 600px) {
+  .message {
+    display: block;
+  }
 }

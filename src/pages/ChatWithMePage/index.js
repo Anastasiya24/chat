@@ -60,9 +60,13 @@ const ChatWithMePage = () => {
             placeholder="Your message"
           />
           {newMessageTest && (
-            <img src={sendSvg} className={styles.sendIcon} onClick={() => {
-              // TODO save new message
-            }} />
+            <img
+              src={sendSvg}
+              className={styles.sendIcon}
+              onClick={() => {
+                // TODO save new message
+              }}
+            />
           )}
         </div>
       </div>

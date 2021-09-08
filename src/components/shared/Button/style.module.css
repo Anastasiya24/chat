@@ -9,6 +9,10 @@
   text-align: center;
 }
 
+.wrapper p {
+  font-family: 'NotoSansTC Bold';
+}
+
 .wrapper:hover {
   background-color: var(--dark-color);
   transition: 300ms linear;

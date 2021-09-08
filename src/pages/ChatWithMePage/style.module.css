@@ -16,3 +16,14 @@
   filter: invert(30%) sepia(14%) saturate(1269%) hue-rotate(275deg) brightness(91%) contrast(89%);
   cursor: pointer;
 }
+
+@media (max-width: 600px) {
+  .chatContainer {
+    margin: 15px;
+  }
+
+  .sendIcon {
+    margin-left: 6px;
+    width: 24px;
+  }
+}

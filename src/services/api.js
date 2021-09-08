@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 axios.create({
-  timeout: 200000
+  timeout: 200000,
 });
 
 // TODO
