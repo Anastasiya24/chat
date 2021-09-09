@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { get, set, remove } from 'services/localStorage';
 
 //     id: 1,
 //     text: 'Hi!',
@@ -12,7 +13,7 @@ export const messages = createSlice({
   reducers: {
     // TODO
     loadMessagesList: (state) => {
-      const list = localStorage.getItem('messages') || [];
+      const list = get('messages') || [];
       // console.log('list: ', list);
       // console.log('JSON', JSON.parse(list));
       state.list = list;
@@ -21,8 +22,8 @@ export const messages = createSlice({
       const list = Array.from(state.list);
       list.push(action.payload);
 
-      if (localStorage.getItem('messages')) localStorage.removeItem('messages');
-      localStorage.setItem('messages', list);
+      if (get('messages')) remove('messages');
+      set('messages', list);
 
       state.list = list;
     },
