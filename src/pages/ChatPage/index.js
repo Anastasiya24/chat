@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 import AccountContainer from 'components/AccountContainer';
 import Message from 'components/shared/Message';
 import Textarea from 'components/shared/Textarea';
@@ -20,12 +21,11 @@ const ChatPage = () => {
   const [newMessageTest, setMessageText] = useState('');
 
   const onSendMessage = () => {
-    // TODO
     dispatch(
       addNewMessage({
-        id: 1,
+        id: uuidv4(),
         text: newMessageTest,
-        time: '14:11',
+        time: `${new Date().getHours()}:${new Date().getMinutes()}`,
       })
     );
     setMessageText('');

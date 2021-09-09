@@ -8,7 +8,7 @@
 }
 
 .sender {
-  margin-right: 10px;
+  margin: 1px 10px 0 0;
   color: var(--dark-color);
   font-family: 'NotoSansTC Bold';
 }
