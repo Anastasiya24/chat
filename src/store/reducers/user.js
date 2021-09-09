@@ -10,6 +10,7 @@ export const user = createSlice({
     loadUser: (state) => {
       state.name = get('userName') || '';
     },
+
     editUser: (state, action) => {
       const name = action.payload;
       if (get('userName')) remove('userName');

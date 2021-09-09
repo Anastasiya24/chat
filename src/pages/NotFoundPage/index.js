@@ -1,6 +1,6 @@
 import React from 'react';
 import history from 'store/history';
-import styles from './styles.module.css';
+import styles from './style.module.css';
 
 const NotFoundPage = () => {
   return (

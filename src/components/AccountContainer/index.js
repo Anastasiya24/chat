@@ -4,8 +4,8 @@ import { useDispatch } from 'react-redux';
 import Modal from 'components/shared/Modal';
 import ProfileSettings from 'components/ProfileSettings';
 import history from 'store/history';
-import { chatSvg } from 'assets/icons';
 import { editUser } from 'store/reducers/user';
+import { chatSvg } from 'assets/icons';
 import styles from './style.module.css';
 
 const AccountContainer = ({ name, children }) => {
@@ -37,7 +37,7 @@ const AccountContainer = ({ name, children }) => {
           <div className={styles.logo} onClick={() => history.push('/')}>
             <img src={chatSvg} alt="" />
           </div>
-          <p>Chat enterprise</p>
+          <p>Chat app</p>
         </div>
       </div>
       {isOpenAccountModal && (

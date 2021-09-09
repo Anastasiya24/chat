@@ -5,10 +5,9 @@ import { Provider } from 'react-redux';
 
 import store from 'store/store';
 import history from 'store/history';
-import App from 'components/App';
+import App from 'App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
-// require('dotenv').config()
 
 const RootApp = () => {
   return (

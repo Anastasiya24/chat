@@ -12,10 +12,6 @@
   padding: 10px 20px;
 }
 
-.logo {
-  cursor: pointer;
-}
-
 .logo img {
   width: 30px;
   filter: invert(1);
