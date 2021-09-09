@@ -45,8 +45,9 @@ const ChatPage = () => {
             value={newMessageTest}
             onChange={setMessageText}
             placeholder="Your message"
+            handleEnterKey={onSendMessage}
           />
-          {newMessageTest && (
+          {newMessageTest && newMessageTest?.trim() && (
             <img src={sendSvg} className={styles.sendIcon} onClick={onSendMessage} />
           )}
         </div>
