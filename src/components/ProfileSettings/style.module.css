@@ -3,6 +3,10 @@
   font-size: 15px;
 }
 
+.wrapper h1:first-child {
+  text-decoration: underline;
+}
+
 .button {
   width: 200px;
   margin: 15px auto 0;

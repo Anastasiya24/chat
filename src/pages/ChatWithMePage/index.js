@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import AccountContainer from 'components/AccountContainer';
 import Message from 'components/shared/Message';
 import Textarea from 'components/shared/Textarea';
@@ -40,8 +41,7 @@ const messageList = [
 ];
 
 const ChatWithMePage = () => {
-  // TODO get Name from storage
-  const name = 'Nastya';
+  const name = useSelector(({ user }) => user.name);
   const [newMessageTest, setMessageText] = useState('');
 
   return (

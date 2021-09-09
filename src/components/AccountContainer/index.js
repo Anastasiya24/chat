@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import Modal from 'components/shared/Modal';
 import ProfileSettings from 'components/ProfileSettings';
 import history from 'store/history';
 import { chatSvg } from 'assets/icons';
+import { editUser } from 'store/reducers/user';
 import styles from './style.module.css';
 
 const AccountContainer = ({ name, children }) => {
   const [isOpenAccountModal, setAccountModal] = useState(false);
+  const dispatch = useDispatch();
+
+  const onChangeUserName = (newName) => {
+    dispatch(editUser(newName));
+    setAccountModal(false);
+  };
 
   return (
     <>
@@ -34,7 +42,7 @@ const AccountContainer = ({ name, children }) => {
       </div>
       {isOpenAccountModal && (
         <Modal onClose={() => setAccountModal(false)} title="Profile Settings">
-          <ProfileSettings />
+          <ProfileSettings onChangeUserName={(newName) => onChangeUserName(newName)} />
         </Modal>
       )}
     </>

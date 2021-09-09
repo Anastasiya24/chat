@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-// import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import styles from './style.module.css';
 import Input from 'components/shared/Input';
 import Button from 'components/shared/Button';
+import { editUser } from 'store/reducers/user';
 
 const GreetingSection = () => {
   const [name, setName] = useState('');
+  const dispatch = useDispatch();
 
   return (
     <div className={styles.wrapper}>
@@ -15,23 +17,17 @@ const GreetingSection = () => {
         <Input
           value={name}
           onChange={(e) => setName(e?.target?.value)}
-          placeholder="First Name"
+          placeholder="Nickname"
         />
         <Button
           text="Start"
-          onClick={() => {
-            // TODO save new name
-          }}
+          onClick={() => dispatch(editUser(name))}
           invalid={!name}
           className={styles.button}
         />
       </div>
     </div>
   );
-};
-
-GreetingSection.propTypes = {
-  // title: PropTypes.string.isRequired,
 };
 
 export default GreetingSection;

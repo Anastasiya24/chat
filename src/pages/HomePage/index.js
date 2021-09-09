@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import GreetingSection from 'components/GreetingSection';
 import MenuSection from 'components/MenuSection';
+import { loadUser } from 'store/reducers/user';
 
 const HomePage = () => {
-  // TODO get Name from storage
-  const name = 'Nastya';
+  const name = useSelector(({ user }) => user.name);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadUser());
+  }, []);
 
   return name ? <MenuSection /> : <GreetingSection />;
 };

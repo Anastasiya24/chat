@@ -1,14 +1,19 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch, connect } from 'react-redux';
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import ChatWithCompanionPage from 'pages/ChatWithCompanionPage';
 import ChatWithMePage from 'pages/ChatWithMePage';
 import HomePage from 'pages/HomePage';
 import NotFoundPage from 'pages/NotFoundPage';
+import { loadUser } from 'store/reducers/user';
 
 function App() {
-  // TODO get Name from storage
-  const name = 'Nastya';
+  const name = useSelector(({ user }) => user.name);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadUser());
+  }, []);
 
   return (
     <Switch>
@@ -26,7 +31,6 @@ function App() {
         }
       />
       <Route path="*" component={NotFoundPage} />
-      {/* <Redirect from="/" to="/home" /> */}
     </Switch>
   );
 }
