@@ -6,7 +6,7 @@ const Message = ({ sender, text, time }) => {
   return (
     <div className={styles.message}>
       <p className={styles.sender}>{sender}:</p>
-      <div>
+      <div className={styles.textSection}>
         <p className={styles.text}>{text}</p>
         <p className={styles.time}>{time}</p>
       </div>

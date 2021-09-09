@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch, connect } from 'react-redux';
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
-import ChatWithCompanionPage from 'pages/ChatWithCompanionPage';
-import ChatWithMePage from 'pages/ChatWithMePage';
+import ChatPage from 'pages/ChatPage';
 import HomePage from 'pages/HomePage';
 import NotFoundPage from 'pages/NotFoundPage';
 import { loadUser } from 'store/reducers/user';
@@ -20,15 +19,8 @@ function App() {
       <Route exact path="/" component={HomePage} />
       <Route
         exact
-        path="/chat-with-me"
-        render={(props) => (name ? <ChatWithMePage {...props} /> : <Redirect to="/" />)}
-      />
-      <Route
-        exact
-        path="/chat-with-companion"
-        render={(props) =>
-          name ? <ChatWithCompanionPage {...props} /> : <Redirect to="/" />
-        }
+        path="/chat"
+        render={(props) => (name ? <ChatPage {...props} /> : <Redirect to="/" />)}
       />
       <Route path="*" component={NotFoundPage} />
     </Switch>

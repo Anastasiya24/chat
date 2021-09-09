@@ -11,16 +11,8 @@ const MenuSection = () => {
     <AccountContainer name={name}>
       <div className={styles.wrapper}>
         <div>
-          <h1 className={styles.title}>Choose a chat</h1>
-          <Button
-            text="With myself"
-            onClick={() => history.push('/chat-with-me')}
-            className={styles.button}
-          />
-          <Button
-            text="With companion"
-            onClick={() => history.push('/chat-with-companion')}
-          />
+          <h1 className={styles.title}>Let's start!</h1>
+          <Button text="Chat" onClick={() => history.push('/chat')} />
         </div>
       </div>
     </AccountContainer>
