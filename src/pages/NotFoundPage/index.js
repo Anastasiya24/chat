@@ -5,7 +5,7 @@ import styles from './styles.module.css';
 const NotFoundPage = () => {
   return (
     <div className={styles.container}>
-      <p>Page not found</p>
+      <h1>Page not found</h1>
       <div className={styles.button} onClick={() => history.push('/')}>
         <p>Go back</p>
       </div>
