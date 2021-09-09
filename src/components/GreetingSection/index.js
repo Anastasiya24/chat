@@ -9,6 +9,10 @@ const GreetingSection = () => {
   const [name, setName] = useState('');
   const dispatch = useDispatch();
 
+  const onSaveUserName = () => {
+    dispatch(editUser(name));
+  };
+
   return (
     <div className={styles.wrapper}>
       <div>
@@ -18,10 +22,11 @@ const GreetingSection = () => {
           value={name}
           onChange={(e) => setName(e?.target?.value)}
           placeholder="Nickname"
+          handleEnterKey={onSaveUserName}
         />
         <Button
           text="Start"
-          onClick={() => dispatch(editUser(name))}
+          onClick={onSaveUserName}
           invalid={!name}
           className={styles.button}
         />

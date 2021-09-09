@@ -8,6 +8,7 @@ import styles from './style.module.css';
 const ProfileSettings = ({ onChangeUserName }) => {
   const name = useSelector(({ user }) => user.name);
   const [newName, setNewName] = useState('');
+
   return (
     <div className={styles.wrapper}>
       <h1>Your nickname: {name}</h1>
@@ -16,6 +17,7 @@ const ProfileSettings = ({ onChangeUserName }) => {
         value={newName}
         onChange={(e) => setNewName(e?.target?.value)}
         placeholder="Nickname"
+        handleEnterKey={() => onChangeUserName(newName)}
       />
       <Button
         text="Change"
