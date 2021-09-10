@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import Modal from 'components/shared/Modal';
 import ProfileSettings from 'components/ProfileSettings';
 import history from 'store/history';
-import { editUser } from 'store/reducers/user';
+import { editUser } from 'store/reducers/user/service';
 import { getUserId } from 'services/getUserId';
 import { chatSvg } from 'assets/icons';
 import styles from './style.module.css';

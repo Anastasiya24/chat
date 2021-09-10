@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { editUser } from 'store/reducers/user';
+import { editUser } from 'store/reducers/user/service';
 import history from 'store/history';
 import { getUserId } from 'services/getUserId';
 import Input from 'components/shared/Input';

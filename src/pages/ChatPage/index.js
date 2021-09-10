@@ -6,7 +6,7 @@ import Message from 'components/shared/Message';
 import Textarea from 'components/shared/Textarea';
 import { sendSvg } from 'assets/icons';
 import { getUserId } from 'services/getUserId';
-import { loadMessagesList, addNewMessage } from 'store/reducers/messages';
+import { loadMessagesList, addNewMessage } from 'store/reducers/messages/service';
 import styles from './style.module.css';
 
 const ChatPage = () => {
