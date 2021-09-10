@@ -14,7 +14,7 @@ export const user = createSlice({
     },
 
     [editUser.fulfilled]: (state, action) => {
-      state.name = action.payload;
+      state.name = action.payload?.name;
     },
   },
 });
