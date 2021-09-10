@@ -2,13 +2,15 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch, connect } from 'react-redux';
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import { GreetingPage, ChatPage, NotFoundPage } from 'pages';
-import { loadUser } from 'store/reducers/user';
+import { getUserName } from 'store/reducers/user';
+import { getUserId } from 'services/getUserId';
 
 function App() {
+  const id = getUserId();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(loadUser());
+    dispatch(getUserName(id));
   }, []);
 
   const name = useSelector(({ user }) => user.name);

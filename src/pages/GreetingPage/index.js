@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { editUser } from 'store/reducers/user';
 import history from 'store/history';
+import { getUserId } from 'services/getUserId';
 import Input from 'components/shared/Input';
 import Button from 'components/shared/Button';
 import styles from './style.module.css';
@@ -11,7 +12,8 @@ const GreetingSection = () => {
   const dispatch = useDispatch();
 
   const onSaveUserName = () => {
-    dispatch(editUser(name));
+    const id = getUserId();
+    dispatch(editUser({ id, newName: name }));
     history.push('/');
   };
 

@@ -1,11 +1,11 @@
-export const get = (key) => {
+export const lsGet = (key) => {
   return localStorage.getItem(key);
 };
 
-export const set = (key, value) => {
+export const lsSet = (key, value) => {
   localStorage.setItem(key, value);
 };
 
-export const remove = (key) => {
+export const lsRemove = (key) => {
   localStorage.removeItem(key);
 };

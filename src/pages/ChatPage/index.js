@@ -5,17 +5,19 @@ import AccountContainer from 'components/AccountContainer';
 import Message from 'components/shared/Message';
 import Textarea from 'components/shared/Textarea';
 import { sendSvg } from 'assets/icons';
+import { getUserId } from 'services/getUserId';
 import { loadMessagesList, addNewMessage } from 'store/reducers/messages';
 import styles from './style.module.css';
 
 const ChatPage = () => {
+  const id = getUserId();
   const name = useSelector(({ user }) => user.name);
   const messages = useSelector(({ messages }) => messages.list);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(loadMessagesList());
+    dispatch(loadMessagesList(id));
   }, []);
 
   const [newMessageTest, setMessageText] = useState('');
@@ -23,9 +25,12 @@ const ChatPage = () => {
   const onSendMessage = () => {
     dispatch(
       addNewMessage({
-        id: uuidv4(),
-        text: newMessageTest,
-        time: `${new Date().getHours()}:${new Date().getMinutes()}`,
+        id,
+        message: {
+          id: uuidv4(),
+          text: newMessageTest,
+          time: `${new Date().getHours()}:${new Date().getMinutes()}`,
+        },
       })
     );
     setMessageText('');

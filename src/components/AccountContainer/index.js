@@ -5,6 +5,7 @@ import Modal from 'components/shared/Modal';
 import ProfileSettings from 'components/ProfileSettings';
 import history from 'store/history';
 import { editUser } from 'store/reducers/user';
+import { getUserId } from 'services/getUserId';
 import { chatSvg } from 'assets/icons';
 import styles from './style.module.css';
 
@@ -13,7 +14,8 @@ const AccountContainer = ({ name, children }) => {
   const dispatch = useDispatch();
 
   const onChangeUserName = (newName) => {
-    dispatch(editUser(newName));
+    const id = getUserId();
+    dispatch(editUser({ id, newName }));
     setAccountModal(false);
   };
 
