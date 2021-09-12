@@ -14,7 +14,9 @@ export const messages = createSlice({
     },
 
     [addNewMessage.fulfilled]: (state, action) => {
-      state.list = action.payload;
+      const list = Array.from(state.list);
+      list.push(action.payload);
+      state.list = list;
     },
   },
 });

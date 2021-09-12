@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { v4 as uuidv4 } from 'uuid';
 import AccountContainer from 'components/AccountContainer';
 import Message from 'components/shared/Message';
 import Textarea from 'components/shared/Textarea';
@@ -25,9 +24,8 @@ const ChatPage = () => {
   const onSendMessage = () => {
     dispatch(
       addNewMessage({
-        id,
         message: {
-          id: uuidv4(),
+          senderId: id,
           text: newMessageTest,
           time: `${new Date().getHours()}:${new Date().getMinutes()}`,
         },
@@ -40,8 +38,8 @@ const ChatPage = () => {
     <AccountContainer name={name}>
       <div className={styles.chatContainer}>
         <div className={styles.messages}>
-          {messages.map(({ id, text, time }) => (
-            <Message key={id} sender={name} time={time} text={text} />
+          {messages.map(({ _id, text, time }) => (
+            <Message key={_id} sender={name} time={time} text={text} />
           ))}
         </div>
 
