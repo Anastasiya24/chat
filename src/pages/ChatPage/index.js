@@ -1,12 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import styled from 'styled-components';
 import AccountContainer from 'components/AccountContainer';
 import Message from 'components/shared/Message';
 import Textarea from 'components/shared/Textarea';
 import { sendSvg } from 'assets/icons';
 import { getUserId } from 'services/getUserId';
 import { loadMessagesList, addNewMessage } from 'store/reducers/messages/service';
-import styles from './style.module.css';
+
+const Wrapper = styled.div`
+  margin: 20px;
+  @media (max-width: 600px) {
+    margin: 15px;
+  }
+`;
+
+const MessagesList = styled.div`
+  min-height: calc(100vh - 248px);
+`;
+
+const Footer = styled.div`
+  display: flex;
+`;
+
+const SendImg = styled.img`
+  margin-left: 10px;
+  width: 30px;
+  filter: invert(30%) sepia(14%) saturate(1269%) hue-rotate(275deg) brightness(91%);
+  contrast(89%);
+  cursor: pointer;
+  @media (max-width: 600px) {
+    margin-left: 6px;
+    width: 24px;
+  }
+`;
 
 const ChatPage = () => {
   const id = getUserId();
@@ -36,14 +63,14 @@ const ChatPage = () => {
 
   return (
     <AccountContainer name={name}>
-      <div className={styles.chatContainer}>
-        <div className={styles.messages}>
+      <Wrapper>
+        <MessagesList>
           {messages.map(({ _id, text, time }) => (
             <Message key={_id} sender={name} time={time} text={text} />
           ))}
-        </div>
+        </MessagesList>
 
-        <div className={styles.footer}>
+        <Footer>
           <Textarea
             value={newMessageTest}
             onChange={setMessageText}
@@ -51,10 +78,10 @@ const ChatPage = () => {
             handleEnterKey={onSendMessage}
           />
           {newMessageTest && newMessageTest?.trim() && (
-            <img src={sendSvg} className={styles.sendIcon} onClick={onSendMessage} />
+            <SendImg src={sendSvg} onClick={onSendMessage} />
           )}
-        </div>
-      </div>
+        </Footer>
+      </Wrapper>
     </AccountContainer>
   );
 };

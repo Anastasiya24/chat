@@ -1,11 +1,46 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import styled from 'styled-components';
 import { editUser } from 'store/reducers/user/service';
 import history from 'store/history';
 import { getUserId } from 'services/getUserId';
 import Input from 'components/shared/Input';
 import Button from 'components/shared/Button';
-import styles from './style.module.css';
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  @media (max-width: 600px) {
+    margin: 40px 20px;
+  }
+`;
+
+const Title = styled.h1`
+  text-shadow: 5px -2px 0px var(--secondary-color);
+  font-family: 'NotoSansTC Bold';
+  font-size: 65px;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  @media (max-width: 600px) {
+    margin-bottom: 30px;
+  }
+`;
+
+const Subtitle = styled.p`
+  padding: 10px 0;
+  color: var(--primary-color);
+  font-family: 'NotoSansTC Bold';
+  font-size: 17px;
+`;
+
+const ChatButton = styled(Button)`
+  && {
+    margin-top: 20px;
+  }
+`;
 
 const GreetingSection = () => {
   const [name, setName] = useState('');
@@ -18,24 +53,19 @@ const GreetingSection = () => {
   };
 
   return (
-    <div className={styles.wrapper}>
+    <Wrapper>
       <div>
-        <h1 className={styles.title}>Nice to meet you</h1>
-        <p className={styles.subtitle}>What is your name?</p>
+        <Title>Nice to meet you</Title>
+        <Subtitle>What is your name?</Subtitle>
         <Input
           value={name}
           onChange={(e) => setName(e?.target?.value)}
           placeholder="Nickname"
           handleEnterKey={onSaveUserName}
         />
-        <Button
-          text="Chat!"
-          onClick={onSaveUserName}
-          invalid={!name}
-          className={styles.button}
-        />
+        <ChatButton text="Chat!" onClick={onSaveUserName} invalid={!name} />
       </div>
-    </div>
+    </Wrapper>
   );
 };
 
