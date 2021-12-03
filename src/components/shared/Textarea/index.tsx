@@ -1,9 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import styles from './style.module.css';
 
-const Textarea = ({ value, onChange, placeholder, handleEnterKey }) => {
-  const onKeyPress = (event) => {
+type Props = {
+  value: string;
+  placeholder: string;
+  onChange: Function;
+  handleEnterKey: Function;
+};
+
+const Textarea: React.FC<Props> = ({
+  value,
+  onChange,
+  placeholder = '',
+  handleEnterKey = () => {},
+}) => {
+  const onKeyPress = (event: React.KeyboardEvent) => {
     if (event.key === 'Enter' && value?.trim()) {
       event.preventDefault();
       handleEnterKey();
@@ -19,18 +29,6 @@ const Textarea = ({ value, onChange, placeholder, handleEnterKey }) => {
       onKeyPress={(e) => handleEnterKey && onKeyPress(e)}
     />
   );
-};
-
-Textarea.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  placeholder: PropTypes.string,
-  handleEnterKey: PropTypes.func,
-};
-
-Textarea.defaultProps = {
-  placeholder: '',
-  handleEnterKey: null,
 };
 
 export default Textarea;

@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import { ReactNode, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Modal from 'components/shared/Modal';
 import ProfileSettings from 'components/ProfileSettings';
@@ -8,14 +7,21 @@ import { editUser } from 'store/reducers/user/service';
 import { getUserId } from 'services/getUserId';
 import { chatSvg } from 'assets/icons';
 import styles from './style.module.css';
+import { EditUserOptions } from 'types/user';
 
-const AccountContainer = ({ name, children }) => {
-  const [isOpenAccountModal, setAccountModal] = useState(false);
+type Props = {
+  name: string;
+  children: ReactNode;
+};
+
+const AccountContainer: React.FC<Props> = ({ name, children }) => {
+  const [isOpenAccountModal, setAccountModal] = useState<boolean>(false);
   const dispatch = useDispatch();
 
-  const onChangeUserName = (newName) => {
+  const onChangeUserName = (newName: string): void => {
     const id = getUserId();
-    dispatch(editUser({ id, newName }));
+    const options: EditUserOptions = { id, newName };
+    dispatch(editUser(options));
     setAccountModal(false);
   };
 
@@ -44,16 +50,13 @@ const AccountContainer = ({ name, children }) => {
       </div>
       {isOpenAccountModal && (
         <Modal onClose={() => setAccountModal(false)} title="Profile Settings">
-          <ProfileSettings onChangeUserName={(newName) => onChangeUserName(newName)} />
+          <ProfileSettings
+            onChangeUserName={(newName: string) => onChangeUserName(newName)}
+          />
         </Modal>
       )}
     </>
   );
-};
-
-AccountContainer.propTypes = {
-  name: PropTypes.string.isRequired,
-  children: PropTypes.element.isRequired,
 };
 
 export default AccountContainer;

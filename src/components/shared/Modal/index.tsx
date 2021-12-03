@@ -1,10 +1,15 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
+import { ReactNode, useEffect } from 'react';
 import styles from './style.module.css';
 
-const Modal = ({ onClose, title, children }) => {
-  const onKeydown = ({ key }) => {
-    if (key === 'Escape') onClose();
+type Props = {
+  onClose: Function;
+  title: string;
+  children: ReactNode;
+};
+
+const Modal: React.FC<Props> = ({ onClose, title, children }) => {
+  const onKeydown = (event: KeyboardEvent) => {
+    if (event?.key === 'Escape') onClose();
   };
 
   useEffect(() => {
@@ -13,11 +18,11 @@ const Modal = ({ onClose, title, children }) => {
   });
 
   return (
-    <div className={styles.modal} onClick={onClose}>
+    <div className={styles.modal} onClick={(e) => onClose(e)}>
       <div className={styles.dialog} onClick={(e) => e.stopPropagation()}>
         <div className={styles.header}>
           <h3 className={styles.title}>{title}</h3>
-          <span className={styles.close} onClick={onClose}>
+          <span className={styles.close} onClick={(e) => onClose(e)}>
             &times;
           </span>
         </div>
@@ -27,12 +32,6 @@ const Modal = ({ onClose, title, children }) => {
       </div>
     </div>
   );
-};
-
-Modal.propTypes = {
-  title: PropTypes.string.isRequired,
-  children: PropTypes.element.isRequired,
-  onClose: PropTypes.func.isRequired,
 };
 
 export default Modal;

@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import { user, messages } from './reducers';
 import history from './history';
 
-export default configureStore({
+const store = configureStore({
   reducer: {
     router: connectRouter(history),
     user,
@@ -12,3 +12,7 @@ export default configureStore({
   },
   middleware: [routerMiddleware(history), thunk],
 });
+
+export type RootState = ReturnType<typeof store.getState>;
+
+export default store;

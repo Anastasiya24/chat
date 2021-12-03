@@ -1,19 +1,21 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { editUser } from 'store/reducers/user/service';
 import history from 'store/history';
 import { getUserId } from 'services/getUserId';
 import Input from 'components/shared/Input';
 import Button from 'components/shared/Button';
+import { EditUserOptions } from 'types/user';
 import styles from './style.module.css';
 
 const GreetingSection = () => {
-  const [name, setName] = useState('');
+  const [name, setName] = useState<string>('');
   const dispatch = useDispatch();
 
   const onSaveUserName = () => {
     const id = getUserId();
-    dispatch(editUser({ id, newName: name }));
+    const options: EditUserOptions = { id, newName: name };
+    dispatch(editUser(options));
     history.push('/');
   };
 
@@ -24,7 +26,7 @@ const GreetingSection = () => {
         <p className={styles.subtitle}>What is your name?</p>
         <Input
           value={name}
-          onChange={(e) => setName(e?.target?.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e?.target?.value)}
           placeholder="Nickname"
           handleEnterKey={onSaveUserName}
         />

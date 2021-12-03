@@ -1,9 +1,19 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import styles from './style.module.css';
 
-const Input = ({ value, onChange, placeholder, handleEnterKey }) => {
-  const onKeyPress = (event) => {
+type Props = {
+  value: string;
+  placeholder: string;
+  onChange: Function;
+  handleEnterKey: Function;
+};
+
+const Input: React.FC<Props> = ({
+  value,
+  onChange,
+  placeholder = '',
+  handleEnterKey = () => {},
+}) => {
+  const onKeyPress = (event: React.KeyboardEvent) => {
     if (event.key === 'Enter' && value?.trim()) {
       event.preventDefault();
       handleEnterKey();
@@ -17,7 +27,7 @@ const Input = ({ value, onChange, placeholder, handleEnterKey }) => {
         type="text"
         placeholder={placeholder}
         value={value}
-        onChange={onChange}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e)}
         onKeyPress={(e) => handleEnterKey && onKeyPress(e)}
       />
       <span className={styles.border}>
@@ -25,18 +35,6 @@ const Input = ({ value, onChange, placeholder, handleEnterKey }) => {
       </span>
     </div>
   );
-};
-
-Input.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  placeholder: PropTypes.string,
-  handleEnterKey: PropTypes.func,
-};
-
-Input.defaultProps = {
-  placeholder: '',
-  handleEnterKey: null,
 };
 
 export default Input;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import AccountContainer from 'components/AccountContainer';
 import Message from 'components/shared/Message';
@@ -6,12 +6,14 @@ import Textarea from 'components/shared/Textarea';
 import { sendSvg } from 'assets/icons';
 import { getUserId } from 'services/getUserId';
 import { loadMessagesList, addNewMessage } from 'store/reducers/messages/service';
+import { MessagesStoreType, MessageType, RequestMessageOptions } from 'types/messages';
+import { UserStateType } from 'types/user';
 import styles from './style.module.css';
 
 const ChatPage = () => {
   const id = getUserId();
-  const name = useSelector(({ user }) => user.name);
-  const messages = useSelector(({ messages }) => messages.list);
+  const name = useSelector(({ user }: UserStateType) => user.name);
+  const messages = useSelector(({ messages }: MessagesStoreType) => messages.list);
 
   const dispatch = useDispatch();
 
@@ -19,18 +21,17 @@ const ChatPage = () => {
     dispatch(loadMessagesList(id));
   }, []);
 
-  const [newMessageTest, setMessageText] = useState('');
+  const [newMessageTest, setMessageText] = useState<string>('');
 
   const onSendMessage = () => {
-    dispatch(
-      addNewMessage({
-        message: {
-          senderId: id,
-          text: newMessageTest,
-          time: `${new Date().getHours()}:${new Date().getMinutes()}`,
-        },
-      })
-    );
+    const options: RequestMessageOptions = {
+      message: {
+        senderId: id,
+        text: newMessageTest,
+        time: `${new Date().getHours()}:${new Date().getMinutes()}`,
+      },
+    };
+    dispatch(addNewMessage(options));
     setMessageText('');
   };
 
@@ -38,7 +39,7 @@ const ChatPage = () => {
     <AccountContainer name={name}>
       <div className={styles.chatContainer}>
         <div className={styles.messages}>
-          {messages.map(({ _id, text, time }) => (
+          {messages.map(({ _id, text, time }: MessageType) => (
             <Message key={_id} sender={name} time={time} text={text} />
           ))}
         </div>

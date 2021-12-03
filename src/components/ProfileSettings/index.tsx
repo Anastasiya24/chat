@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
 import Button from 'components/shared/Button';
 import Input from 'components/shared/Input';
+import { UserStateType } from 'types/user';
 import styles from './style.module.css';
 
-const ProfileSettings = ({ onChangeUserName }) => {
-  const name = useSelector(({ user }) => user.name);
+type Props = {
+  onChangeUserName: Function;
+};
+
+const ProfileSettings: React.FC<Props> = ({ onChangeUserName }) => {
+  const name = useSelector(({ user }: UserStateType) => user.name);
   const [newName, setNewName] = useState('');
 
   return (
@@ -15,7 +19,9 @@ const ProfileSettings = ({ onChangeUserName }) => {
       <h1>Change your nickname</h1>
       <Input
         value={newName}
-        onChange={(e) => setNewName(e?.target?.value)}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>): void =>
+          setNewName(e?.target?.value)
+        }
         placeholder="Nickname"
         handleEnterKey={() => onChangeUserName(newName)}
       />
@@ -27,10 +33,6 @@ const ProfileSettings = ({ onChangeUserName }) => {
       />
     </div>
   );
-};
-
-ProfileSettings.propTypes = {
-  onChangeUserName: PropTypes.func.isRequired,
 };
 
 export default ProfileSettings;
