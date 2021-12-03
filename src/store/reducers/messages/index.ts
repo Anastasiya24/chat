@@ -13,7 +13,7 @@ const options: CreateSliceOptions = {
   extraReducers: {
     [loadMessagesList.fulfilled.type]: (
       state: MessagesStateType,
-      action: PayloadAction<Array<MessageType>>
+      action: PayloadAction<MessageType[]>
     ) => {
       state.list = action.payload;
     },
