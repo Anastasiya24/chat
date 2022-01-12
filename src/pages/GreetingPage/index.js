@@ -19,7 +19,7 @@ const GreetingSection = () => {
 
   return (
     <div className={styles.wrapper}>
-      <div>
+      <form>
         <h1 className={styles.title}>Nice to meet you</h1>
         <p className={styles.subtitle}>What is your name?</p>
         <Input
@@ -34,7 +34,7 @@ const GreetingSection = () => {
           invalid={!name}
           className={styles.button}
         />
-      </div>
+      </form>
     </div>
   );
 };

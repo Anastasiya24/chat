@@ -22,7 +22,7 @@ const AccountContainer = ({ name, children }) => {
   return (
     <>
       <div className={styles.container}>
-        <div className={styles.header}>
+        <header className={styles.header}>
           <div className={styles.logo} onClick={() => history.push('/')}>
             <img src={chatSvg} alt="" />
           </div>
@@ -32,7 +32,7 @@ const AccountContainer = ({ name, children }) => {
           >
             {name?.substring(0, 1)?.toUpperCase()}
           </div>
-        </div>
+        </header>
         <div className={styles.content}>{children}</div>
 
         <div className={styles.footer}>
