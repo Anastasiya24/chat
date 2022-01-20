@@ -1,22 +1,37 @@
-/// <reference types="cypress" />
-// ***********************************************************
-// This example plugins/index.js can be used to load plugins
-//
-// You can change the location of this file or turn off loading
-// the plugins file with the 'pluginsFile' configuration option.
-//
-// You can read more here:
-// https://on.cypress.io/plugins-guide
-// ***********************************************************
+const preprocessor = require('@cypress/browserify-preprocessor');
+const pathmodify = require('pathmodify');
 
-// This function is called when a project is opened or re-opened (e.g. due to
-// the project's config changing)
+const browserifyOptions = preprocessor.defaultOptions.browserifyOptions;
 
-/**
- * @type {Cypress.PluginConfig}
- */
-// eslint-disable-next-line no-unused-vars
-module.exports = (on, config) => {
-  // `on` is used to hook into various events Cypress emits
-  // `config` is the resolved Cypress config
-}
+browserifyOptions.paths = [
+  // the process.cwd() depends on the cypress process being started from
+  //  the project root. You can also use an absolute path here.
+  require('path').resolve(process.cwd()),
+];
+
+// -----------------------------------------------------------------------------
+// (2) regard paths starting with `/` as project-relative paths
+// -----------------------------------------------------------------------------
+
+browserifyOptions.plugin = browserifyOptions.plugin || [];
+browserifyOptions.plugin.unshift([
+  pathmodify,
+  {
+    mods: [
+      // strip leading `/` when resolving paths
+      pathmodify.mod.re(/^/, ''),
+    ],
+  },
+]);
+
+// -----------------------------------------------------------------------------
+// (3) compile spec files when they're run
+// -----------------------------------------------------------------------------
+
+const compileFile = preprocessor(preprocessor.defaultOptions);
+
+module.exports = (on) => {
+  on('file:preprocessor', (file) => {
+    return compileFile(file);
+  });
+};
