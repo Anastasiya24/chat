@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch, connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
-import { GreetingPage, ChatPage, NotFoundPage } from 'pages';
+import { GreetingPage, ChatPage, NotFoundPage, ContentPage } from 'pages';
 import { getUserName } from 'store/reducers/user/service';
 import { getUserId } from 'services/getUserId';
 
@@ -27,6 +27,7 @@ function App() {
         path="/greeting"
         render={(props) => (name ? <Redirect to="/" /> : <GreetingPage {...props} />)}
       />
+      <Route path="/content" component={ContentPage} />
       <Route path="*" component={NotFoundPage} />
     </Switch>
   );
