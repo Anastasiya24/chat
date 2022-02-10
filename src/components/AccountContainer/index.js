@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import Modal from 'components/shared/Modal';
@@ -19,11 +19,13 @@ const AccountContainer = ({ name, children }) => {
     setAccountModal(false);
   };
 
+  const goToHomePage = useCallback(() => history.push('/'), []);
+
   return (
     <>
       <div className={styles.container}>
         <div className={styles.header}>
-          <div className={styles.logo} onClick={() => history.push('/')}>
+          <div className={styles.logo} onClick={goToHomePage}>
             <img src={chatSvg} alt="" />
           </div>
           <div
@@ -36,7 +38,7 @@ const AccountContainer = ({ name, children }) => {
         <div className={styles.content}>{children}</div>
 
         <div className={styles.footer}>
-          <div className={styles.logo} onClick={() => history.push('/')}>
+          <div className={styles.logo} onClick={goToHomePage}>
             <img src={chatSvg} alt="" />
           </div>
           <p>Chat app</p>
@@ -44,7 +46,7 @@ const AccountContainer = ({ name, children }) => {
       </div>
       {isOpenAccountModal && (
         <Modal onClose={() => setAccountModal(false)} title="Profile Settings">
-          <ProfileSettings onChangeUserName={(newName) => onChangeUserName(newName)} />
+          <ProfileSettings onChangeUserName={onChangeUserName} />
         </Modal>
       )}
     </>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import AccountContainer from 'components/AccountContainer';
 import Message from 'components/shared/Message';
@@ -7,11 +7,13 @@ import { sendSvg } from 'assets/icons';
 import { getUserId } from 'services/getUserId';
 import { loadMessagesList, addNewMessage } from 'store/reducers/messages/service';
 import styles from './style.module.css';
+import { getUserName } from 'store/reducers/user/selectors';
+import { getMessagesList } from 'store/reducers/messages/selectors';
 
 const ChatPage = () => {
   const id = getUserId();
-  const name = useSelector(({ user }) => user.name);
-  const messages = useSelector(({ messages }) => messages.list);
+  const name = useSelector(getUserName);
+  const messages = useSelector(getMessagesList);
 
   const dispatch = useDispatch();
 
@@ -21,7 +23,7 @@ const ChatPage = () => {
 
   const [newMessageTest, setMessageText] = useState('');
 
-  const onSendMessage = () => {
+  const onSendMessage = useCallback(() => {
     dispatch(
       addNewMessage({
         message: {
@@ -32,7 +34,7 @@ const ChatPage = () => {
       })
     );
     setMessageText('');
-  };
+  }, []);
 
   return (
     <AccountContainer name={name}>

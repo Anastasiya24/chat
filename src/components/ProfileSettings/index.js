@@ -3,10 +3,11 @@ import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import Button from 'components/shared/Button';
 import Input from 'components/shared/Input';
+import { getUserName } from 'store/reducers/user/selectors';
 import styles from './style.module.css';
 
 const ProfileSettings = ({ onChangeUserName }) => {
-  const name = useSelector(({ user }) => user.name);
+  const name = useSelector(getUserName);
   const [newName, setNewName] = useState('');
 
   return (

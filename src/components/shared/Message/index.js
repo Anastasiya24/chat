@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import styles from './style.module.css';
 
@@ -26,4 +26,4 @@ Message.defaultProps = {
   time: '',
 };
 
-export default Message;
+export default memo(Message);
