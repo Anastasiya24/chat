@@ -1,6 +1,6 @@
 import React, { useEffect, Suspense, lazy } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { getUserName } from 'store/reducers/user/service';
 import { getUserName as getUserNameSelector } from 'store/reducers/user/selectors';
 import { getUserId } from 'services/getUserId';
@@ -41,4 +41,4 @@ function App() {
   );
 }
 
-export default withRouter(App);
+export default App;
