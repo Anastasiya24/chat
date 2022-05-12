@@ -38,7 +38,7 @@ const ChatPage = () => {
 
   return (
     <AccountContainer name={name}>
-      <div className={styles.chatContainer}>
+      <div className={styles.chatContainer} data-testid="chatContainer">
         <div className={styles.messages}>
           {messages.map(({ _id, text, time }) => (
             <Message key={_id} sender={name} time={time} text={text} />
