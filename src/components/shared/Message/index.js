@@ -7,7 +7,9 @@ const Message = ({ sender, text, time }) => {
     <div className={styles.message}>
       <p className={styles.sender}>{sender}:</p>
       <div className={styles.textSection}>
-        <p className={styles.text}>{text}</p>
+        <p className={styles.text} data-test="message_text">
+          {text}
+        </p>
         <p className={styles.time}>{time}</p>
       </div>
     </div>

@@ -37,7 +37,7 @@ const ChatPage = () => {
   return (
     <AccountContainer name={name}>
       <div className={styles.chatContainer}>
-        <div className={styles.messages}>
+        <div className={styles.messages} data-test="messages_list">
           {messages.map(({ _id, text, time }) => (
             <Message key={_id} sender={name} time={time} text={text} />
           ))}
@@ -51,7 +51,12 @@ const ChatPage = () => {
             handleEnterKey={onSendMessage}
           />
           {newMessageTest && newMessageTest?.trim() && (
-            <img src={sendSvg} className={styles.sendIcon} onClick={onSendMessage} />
+            <img
+              src={sendSvg}
+              className={styles.sendIcon}
+              onClick={onSendMessage}
+              data-test="send_button"
+            />
           )}
         </div>
       </div>
