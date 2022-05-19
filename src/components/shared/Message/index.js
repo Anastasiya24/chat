@@ -5,7 +5,9 @@ import styles from './style.module.css';
 const Message = ({ sender, text, time }) => {
   return (
     <div className={styles.message}>
-      <p className={styles.sender}>{sender}:</p>
+      <p className={styles.sender}>
+        <span data-test="sender_name">{sender}</span>:
+      </p>
       <div className={styles.textSection}>
         <p className={styles.text} data-test="message_text">
           {text}

@@ -11,7 +11,10 @@ const ProfileSettings = ({ onChangeUserName }) => {
 
   return (
     <div className={styles.wrapper}>
-      <h1>Your nickname: {name}</h1>
+      <h1>
+        Your nickname:
+        <span data-test="user-nickname">{name}</span>
+      </h1>
       <h1>Change your nickname</h1>
       <Input
         value={newName}

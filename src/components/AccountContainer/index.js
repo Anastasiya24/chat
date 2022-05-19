@@ -29,6 +29,7 @@ const AccountContainer = ({ name, children }) => {
           <div
             className={styles.profileIcon}
             onClick={() => setAccountModal(!isOpenAccountModal)}
+            data-test="open_edit-modal_button"
           >
             {name?.substring(0, 1)?.toUpperCase()}
           </div>
